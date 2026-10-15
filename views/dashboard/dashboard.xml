@@ -1,0 +1,74 @@
+<odoo>
+
+    <!-- DASHBOARD FORM VIEW -->
+    <record id="view_dashboard_form" model="ir.ui.view">
+        <field name="name">approval.dashboard.form</field>
+        <field name="model">approval.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard">
+
+                <sheet>
+
+                    <group col="4">
+
+                        <group>
+                            <div class="oe_stat_button">
+                                <span class="o_stat_text">Total</span>
+                                <span class="o_stat_value">
+                                    <field name="total_requests"/>
+                                </span>
+                            </div>
+                        </group>
+
+                        <group>
+                            <div class="oe_stat_button">
+                                <span class="o_stat_text">Approved</span>
+                                <span class="o_stat_value">
+                                    <field name="approved"/>
+                                </span>
+                            </div>
+                        </group>
+
+                        <group>
+                            <div class="oe_stat_button">
+                                <span class="o_stat_text">Rejected</span>
+                                <span class="o_stat_value">
+                                    <field name="rejected"/>
+                                </span>
+                            </div>
+                        </group>
+
+                        <group>
+                            <div class="oe_stat_button">
+                                <span class="o_stat_text">Pending</span>
+                                <span class="o_stat_value">
+                                    <field name="pending"/>
+                                </span>
+                            </div>
+                        </group>
+
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <!-- DEFAULT RECORD (VERY IMPORTANT) -->
+    <record id="approval_dashboard_main" model="approval.dashboard">
+        <field name="name">Main Dashboard</field>
+    </record>
+
+
+    <!-- ACTION -->
+    <record id="action_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">approval.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="approval_dashboard_main"/>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

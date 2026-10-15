@@ -1,0 +1,98 @@
+<odoo>
+
+    <template id="report_approval_request">
+
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <!-- HEADER -->
+                        <h2 style="text-align:center;">
+                            Approval Request Information
+                        </h2>
+
+                        <h3 style="text-align:center;">
+                            <t t-esc="doc.sequence"/> - 
+                            <t t-esc="doc.state"/>
+                        </h3>
+
+                        <br/>
+
+                        <!--  TABLE  -->
+                        <table style="width:100%; border-collapse: collapse;" border="1">
+
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><t t-esc="doc.name"/></td>
+
+                                <td><strong>Request Date</strong></td>
+                                <td><t t-esc="doc.request_date"/></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Category</strong></td>
+                                <td><t t-esc="doc.category_id.name"/></td>
+
+                                <td><strong>User</strong></td>
+                                <td><t t-esc="doc.user_id.name"/></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Product</strong></td>
+                                <td><t t-esc="doc.product"/></td>
+
+                                <td><strong>Qty</strong></td>
+                                <td><t t-esc="doc.qty"/></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Amount</strong></td>
+                                <td><t t-esc="doc.amount"/></td>
+
+                                <td><strong>Partner</strong></td>
+                                <td><t t-esc="doc.partner"/></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Deadline</strong></td>
+                                <td><t t-esc="doc.deadline"/></td>
+
+                                <td><strong>Status</strong></td>
+                                <td><t t-esc="doc.state"/></td>
+                            </tr>
+
+                        </table>
+
+                        <br/>
+
+                        <!--  DESCRIPTION  -->
+                        <h4>Description:</h4>
+                        <p><t t-esc="doc.description"/></p>
+
+                        <br/><br/>
+
+                        <!--  SIGNATURE -->
+                        <table style="width:100%;">
+                            <tr>
+                                <td>
+                                    Approved Signature: ____________________
+                                </td>
+                                <td style="text-align:right;">
+                                    Date: ____________________
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </t>
+
+            </t>
+        </t>
+
+    </template>
+
+</odoo>

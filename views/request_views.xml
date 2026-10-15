@@ -1,0 +1,185 @@
+<odoo>
+
+    
+    <record id="view_approval_request_list" model="ir.ui.view">
+        <field name="name">approval.request.list</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="user_id"/>
+                <field name="deadline"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_approval_request_form" model="ir.ui.view">
+        <field name="name">approval.request.form</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <!-- HEADER -->
+                <header>
+
+                    <button name="action_confirm" type="object"
+                            string="Confirm"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <button name="action_approve" type="object"
+                            string="Approve"
+                            class="btn-success"
+                            invisible="state != 'confirmed'"/>
+
+                    <button name="action_reject" type="object"
+                            string="Reject"
+                            class="btn-danger"
+                            invisible="state != 'confirmed'"/>
+
+                    <!-- PRINT -->
+                    <button name="action_print_request"
+                            type="object"
+                            string="Print"
+                            class="btn-info"/>
+
+                    <button name="action_reset" type="object"
+                            string="Reset"
+                            class="btn-secondary"
+                            invisible="state != 'rejected'"/>
+
+                    <field name="state" widget="statusbar"/>
+
+                </header>
+
+                <sheet>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="category_id"/>
+                        <field name="user_id"/>
+                        <field name="deadline"/>
+                    </group>
+
+                    <group>
+                        <field name="product"/>
+                        <field name="qty"/>
+                        <field name="amount"/>
+                        <field name="partner"/>
+                    </group>
+
+                    <group>
+                        <field name="description"/>
+                        <field name="internal_note"/>
+                        <field name="reject_reason" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Approval Flow">
+                            <field name="approval_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="user_id"/>
+                                    <field name="state"/>
+                                    <field name="approved_date"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- KANBAN -->
+    
+    <record id="view_approval_request_kanban" model="ir.ui.view">
+        <field name="name">approval.request.kanban</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+
+                <field name="name"/>
+                <field name="state"/>
+
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div><field name="state"/></div>
+                        </div>
+                    </t>
+                </templates>
+
+            </kanban>
+        </field>
+    </record>
+
+    
+    <!-- PIVOT -->
+    
+    <record id="view_approval_request_pivot" model="ir.ui.view">
+        <field name="name">approval.request.pivot</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="state" type="row"/>
+                <field name="amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    
+    <!-- GRAPH -->
+    
+    <record id="view_approval_request_graph" model="ir.ui.view">
+        <field name="name">approval.request.graph</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="state" type="row"/>
+                <field name="amount" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    
+    <!-- CALENDAR ✅ FIXED -->
+    
+    <record id="view_approval_request_calendar" model="ir.ui.view">
+        <field name="name">approval.request.calendar</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <calendar string="Approval Requests"
+                      date_start="deadline"
+                      color="state">
+
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="category_id"/>
+                <field name="state"/>
+
+            </calendar>
+        </field>
+    </record>
+
+    
+    <!-- ACTIVITY -->
+    <record id="view_approval_request_activity" model="ir.ui.view">
+        <field name="name">approval.request.activity</field>
+        <field name="model">approval.request</field>
+        <field name="arch" type="xml">
+            <activity string="Activities">
+                <field name="name"/>
+            </activity>
+        </field>
+    </record>
+
+</odoo>

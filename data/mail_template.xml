@@ -1,0 +1,30 @@
+<odoo>
+
+    <record id="email_template_request" model="mail.template">
+        <field name="name">Approval Request</field>
+        <field name="model_id" ref="model_approval_request"/>
+        <field name="subject">Approval Request ${object.sequence}</field>
+
+        <field name="email_to">
+            ${','.join([u.email for u in object.approval_line_ids.mapped('user_id') if u.email])}
+        </field>
+
+        <field name="body_html">
+        <![CDATA[
+        <p>Hello,</p>
+
+        <p>New request created:</p>
+
+        <ul>
+            <li><b>Request:</b> ${object.sequence}</li>
+            <li><b>Name:</b> ${object.name}</li>
+            <li><b>Amount:</b> ${object.amount}</li>
+        </ul>
+
+        <p>Please approve.</p>
+        ]]>
+        </field>
+
+    </record>
+
+</odoo>

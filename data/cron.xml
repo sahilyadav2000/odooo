@@ -1,0 +1,10 @@
+<odoo>
+    <record id="ir_cron_escalation" model="ir.cron">
+        <field name="name">Approval Escalation</field>
+        <field name="model_id" ref="model_approval_request"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_escalation()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+</odoo>

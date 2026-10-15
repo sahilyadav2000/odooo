@@ -1,0 +1,44 @@
+<odoo>
+
+    
+    <record id="action_approval_request" model="ir.actions.act_window">
+        <field name="name">Approval Requests</field>
+        <field name="res_model">approval.request</field>
+
+        <!-- ✅ FIXED: added calendar -->
+        <field name="view_mode">kanban,list,form,pivot,graph,calendar,activity</field>
+
+        <!-- OPTIONAL (BEST PRACTICE) -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first approval request
+            </p>
+        </field>
+    </record>
+
+
+    <record id="action_approval_category" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">approval.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+       <menuitem id="menu_approval_root"
+              name="Approval Requests"
+              sequence="10"/>
+
+    
+    <menuitem id="menu_approval_request"
+              name="Approval Requests"
+              parent="menu_approval_root"
+              action="action_approval_request"
+              sequence="10"/>
+
+    
+    <menuitem id="menu_approval_category"
+              name="Approval Request Categories"
+              parent="menu_approval_root"
+              action="action_approval_category"
+              sequence="20"/>
+
+</odoo>

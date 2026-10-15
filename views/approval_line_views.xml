@@ -1,0 +1,15 @@
+<odoo>
+
+    <record id="view_approval_line_list" model="ir.ui.view">
+        <field name="name">approval.line.list</field>
+        <field name="model">approval.line</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence"/>
+                <field name="user_id"/>
+                <field name="role"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>
